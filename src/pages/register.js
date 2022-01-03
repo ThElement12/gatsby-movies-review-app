@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Auth } from '../utils/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../utils/firebase';
 
 import User from '../models/user';
 
@@ -10,9 +11,8 @@ export default function Register() {
     const [confirm, setConfirm] = useState("");
     const [msgError, setmsgError] = useState("");
 
-
-    const firebaseRegister = () => {
-        Auth.createUserWithEmailAndPassword(email, pass)
+    const firebaseRegister = async () => {
+        createUserWithEmailAndPassword(auth, email, pass)
             .then(firebaseSuccess)
             .catch(firebaseError);
     };
@@ -48,6 +48,22 @@ export default function Register() {
 
     return (
         <div>
+            <form onSubmit={onSubmit}>
+                <label for={"username"}>Username:
+                    <input type={"text"} name={"username"} onChange={(e) => { setUserName(e.target.value) }} required /><br></br>
+                </label><br></br>
+                <label for={"email"}>Email:
+                    <input type={"text"} name={"email"} onChange={(e) => { setEmail(e.target.value) }} required /><br></br>
+                </label><br></br>
+                <label for={"pass"}>Password:
+                    <input type={"password"} name={"pass"} onChange={(e) => { setPass(e.target.value) }} required /><br></br>
+                </label><br></br>
+                <label for={"confirm"}>Confirm Password:
+                    <input type={"password"} name={"confirm"} onChange={(e) => { setConfirm(e.target.value) }} required /><br></br>
+                </label><br></br>
+                <h1>{msgError}</h1>
+                <button type={"submit"}>Sign Up</button>
+            </form>
 
         </div>
     )
