@@ -49,16 +49,16 @@ export default function Register() {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <label for={"username"}>Username:
+                <label htmlFor={"username"}>Username:
                     <input type={"text"} name={"username"} onChange={(e) => { setUserName(e.target.value) }} required /><br></br>
                 </label><br></br>
-                <label for={"email"}>Email:
+                <label htmlFor={"email"}>Email:
                     <input type={"text"} name={"email"} onChange={(e) => { setEmail(e.target.value) }} required /><br></br>
                 </label><br></br>
-                <label for={"pass"}>Password:
+                <label htmlFor={"pass"}>Password:
                     <input type={"password"} name={"pass"} onChange={(e) => { setPass(e.target.value) }} required /><br></br>
                 </label><br></br>
-                <label for={"confirm"}>Confirm Password:
+                <label htmlFor={"confirm"}>Confirm Password:
                     <input type={"password"} name={"confirm"} onChange={(e) => { setConfirm(e.target.value) }} required /><br></br>
                 </label><br></br>
                 <h1>{msgError}</h1>
