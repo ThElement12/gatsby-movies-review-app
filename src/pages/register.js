@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 
-import { Card, Form, Container, Button } from 'react-bootstrap';
+import { Card, Form, Button, Alert } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../css/LoginRegister.css"
 
@@ -54,7 +54,7 @@ export default function Register() {
         <div className='d-flex align-items-center justify-content-center'>
             <Card className='card'>
                 <Card.Body>
-                    <h2 className='text-center mb-4'>Registrate</h2>
+                    <h2 className='text-center mb-4'>Register</h2>
                     <Form onSubmit={onSubmit}>
                         <Form.Label>Username:</Form.Label>
                         <Form.Control type="username" name="username" onChange={(e) => { setUserName(e.target.value) }} required />
@@ -64,7 +64,8 @@ export default function Register() {
                         <Form.Control type="password" name="pass" onChange={(e) => { setPass(e.target.value) }} required />
                         <Form.Label>Confirm Password:</Form.Label>
                         <Form.Control type="password" name="confirm" onChange={(e) => { setConfirm(e.target.value) }} required />
-                        <h1>{msgError}</h1>
+                        <br></br>
+                        {msgError !== "" && <Alert variant="danger">{msgError}</Alert>}
                         <Button className="w-100" type="submit">Sign Up</Button>
                     </Form>
                 </Card.Body>
