@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 
+import { Card, Form, Container, Button } from 'react-bootstrap';
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../css/LoginRegister.css"
+
 import User from '../models/user';
 
 export default function Register() {
@@ -19,11 +23,11 @@ export default function Register() {
     const firebaseSuccess = () => {
         setmsgError("");
         const newUser = new User(userName, email, pass)
-        const requestOption = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newUser),
-        };
+        /* const requestOption = {
+             method: "POST",
+             headers: { "Content-Type": "application/json" },
+             body: JSON.stringify(newUser),
+         };*/
         //TODO: Save user in database
     };
     const firebaseError = (error) => {
@@ -47,24 +51,26 @@ export default function Register() {
 
 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <label htmlFor={"username"}>Username:
-                    <input type={"text"} name={"username"} onChange={(e) => { setUserName(e.target.value) }} required /><br></br>
-                </label><br></br>
-                <label htmlFor={"email"}>Email:
-                    <input type={"text"} name={"email"} onChange={(e) => { setEmail(e.target.value) }} required /><br></br>
-                </label><br></br>
-                <label htmlFor={"pass"}>Password:
-                    <input type={"password"} name={"pass"} onChange={(e) => { setPass(e.target.value) }} required /><br></br>
-                </label><br></br>
-                <label htmlFor={"confirm"}>Confirm Password:
-                    <input type={"password"} name={"confirm"} onChange={(e) => { setConfirm(e.target.value) }} required /><br></br>
-                </label><br></br>
-                <h1>{msgError}</h1>
-                <button type={"submit"}>Sign Up</button>
-            </form>
-
+        <div className='d-flex align-items-center justify-content-center'>
+            <Card className='card'>
+                <Card.Body>
+                    <h2 className='text-center mb-4'>Registrate</h2>
+                    <Form onSubmit={onSubmit}>
+                        <Form.Label>Username:</Form.Label>
+                        <Form.Control type="username" name="username" onChange={(e) => { setUserName(e.target.value) }} required />
+                        <Form.Label >Email:</Form.Label>
+                        <Form.Control type="email" name="email" onChange={(e) => { setEmail(e.target.value) }} required />
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control type="password" name="pass" onChange={(e) => { setPass(e.target.value) }} required />
+                        <Form.Label>Confirm Password:</Form.Label>
+                        <Form.Control type="password" name="confirm" onChange={(e) => { setConfirm(e.target.value) }} required />
+                        <h1>{msgError}</h1>
+                        <Button className="w-100" type="submit">Sign Up</Button>
+                    </Form>
+                </Card.Body>
+            </Card>
         </div>
+
+
     )
 }
