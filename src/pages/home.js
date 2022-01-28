@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-export default function Home() {
+export default function Home() { 
     return (
         <div>
             Welcome :D
