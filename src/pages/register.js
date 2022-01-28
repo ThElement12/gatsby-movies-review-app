@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 
-import { Card, Form, Button, Alert } from 'react-bootstrap';
-import "bootstrap/dist/css/bootstrap.min.css"
-import "../css/LoginRegister.css"
 
 import User from '../models/user';
+
+import LogRegisterCards from '../components/LogRegisterCards';
+
 
 export default function Register() {
     const [userName, setUserName] = useState("");
@@ -15,7 +15,7 @@ export default function Register() {
     const [confirm, setConfirm] = useState("");
     const [msgError, setmsgError] = useState("");
 
-    const firebaseRegister = async () => {
+    const firebaseRegister = () => {
         createUserWithEmailAndPassword(auth, email, pass)
             .then(firebaseSuccess)
             .catch(firebaseError);
@@ -51,7 +51,19 @@ export default function Register() {
 
 
     return (
-        <div className='d-flex align-items-center justify-content-center'>
+        <LogRegisterCards 
+        msgError={msgError} 
+        onSubmit={onSubmit} 
+        title={"Sign Up"}
+        setEmail={setEmail}
+        setPass={setPass}
+        setConfirm={setConfirm}
+        setUserName={setUserName}
+        />
+
+
+    )
+        /*<div className='d-flex align-items-center justify-content-center'>
             <Card className='card'>
                 <Card.Body>
                     <h2 className='text-center mb-4'>Register</h2>
@@ -70,8 +82,5 @@ export default function Register() {
                     </Form>
                 </Card.Body>
             </Card>
-        </div>
-
-
-    )
+        </div>*/
 }
