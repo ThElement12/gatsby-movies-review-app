@@ -1,8 +1,11 @@
 import React from "react"
 import { Provider } from "react-redux"
 import { createStore } from "redux"
-// eslint-disable-next-line react/display-name,react/prop-types
+
+import allReducers from "../reducers"
+
 export default ({ element }) => {
-    const store = createStore()
+    {console.log(allReducers)}
+    const store = createStore(allReducers)
     return <Provider store={store}>{element}</Provider>
 }
