@@ -13,6 +13,7 @@ export default function Home() {
             Welcome :D
             This site is still under construction be careful 👷🏼‍♂️
             <SearchBar setResults={setResults} />
+            {console.log(results)}
             <ul>
                 {
                     results.map((movie) => (
