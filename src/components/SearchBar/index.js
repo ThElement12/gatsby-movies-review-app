@@ -10,14 +10,14 @@ export default function SearchBar(props) {
     const onSubmit = e => {
         e.preventDefault()
         MoviesService.searchMovie(search)
-            .then(res => props.setResults(res))
+            .then(res => props.setResults(res.data.movie_results))
             .catch(res => {
                 console.error(res)
                 props.setResults([])})
     }
 
     return <div>
-        <Form onsSubmit={onSubmit}>
+        <Form onSubmit={onSubmit}>
             <Form.Control type="text" name="search" onChange={(e) => { setSearch(e.target.value)}} placeholder="Movie..."required/>
             <Button type="submit">Search</Button>
         </Form>
