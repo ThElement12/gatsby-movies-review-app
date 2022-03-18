@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import SearchBar from '../components/SearchBar'
 import Header from '../components/header'
+import MovieDetails from '../components/MovieDetails'
 
 
 export default function Home() {
@@ -13,12 +14,11 @@ export default function Home() {
             Welcome :D
             This site is still under construction be careful 👷🏼‍♂️
             <SearchBar setResults={setResults} />
-            {console.log(results)}
             <ul>
                 {
-                    results.map((movie) => (
-                        <li>
-                            {movie.title}
+                    results.map((movie, i) => (
+                        <li key={i}>
+                            <MovieDetails movie={movie}/>
                         </li>
                     ))
                 }
